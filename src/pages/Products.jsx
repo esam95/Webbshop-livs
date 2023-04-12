@@ -1,16 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Products = () => {
+  const [productList, setProductList] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch('https://product-api-production-94fe.up.railway.app/products/6432d06c4a8b8aec89853d89')
-    const data = await response.json()
-
-    console.log(data)
+    try{
+      const response = await fetch('https://product-api-production-94fe.up.railway.app/products')
+      const data = await response.json()
+      setProductList(data)
+      console.log(data)
+    } catch(error){
+      console.log(error)
+    }
   }
-fetchData()
+
+  useEffect(() => {
+    fetchData()
+  }, []);
+
   return (
-    <div>Products</div>
+    <div>
+      {productList.map(product => {
+        return <article key={product._id}>
+          <img src="src\assets\images\8676496 (1).png" alt="" />
+          <h1>{product.title}</h1>
+          <p>{product.price}</p>
+          </article>
+      })}
+    </div>
   )
 }
 
