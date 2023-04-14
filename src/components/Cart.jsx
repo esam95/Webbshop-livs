@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Products from '../pages/Products';
 
-const Cart = () => {
+const Cart = (Products) => {
+  const [addCart, setAddCart] = useState([]);
+
   return (
-    <div>Cart</div>
+    <div>
+      {addCart.map(product => {
+        return <Product 
+        id={product._id}
+        key={product._id} 
+        title={product.title} 
+        price={product.price}/>
+      })
+      }
+    </div>
   )
 }
 
