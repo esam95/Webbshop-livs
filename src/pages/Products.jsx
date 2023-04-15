@@ -23,11 +23,16 @@ const Products = () => {
   return (
     <div>
       {productList.map(product => {
-        return <Product 
-        id={product._id}
-        key={product._id} 
-        title={product.title} 
-        price={product.price}/>
+        return <article key={product._id}>
+          <Product
+            key={product._id} 
+            title={product.title} 
+            price={product.price}/>
+            <button>Add to Cart</button>
+            <button>
+            <Link to={`../products/${product._id}`} relative='path'>view</Link>
+            </button> 
+        </article>
       })
       }
     </div>

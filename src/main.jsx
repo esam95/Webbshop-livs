@@ -10,6 +10,9 @@ import Root from './pages/Root';
 import Products from './pages/Products';
 import Product from './pages/Product'
 import ErrorPage from './pages/ErrorPage';
+import ManageProducts from './pages/admin/ManageProducts';
+import CreateProduct from './pages/admin/CreateProduct';
+import UpdateProduct from './pages/admin/UpdateProduct';
 
 const router = createBrowserRouter([
   {
@@ -22,8 +25,24 @@ const router = createBrowserRouter([
         element: <Products/>,
       },
       {
+        path: "/products",
+        element: <Products/>,
+      },
+      {
         path: `/products/:productId`,
         element: <Product/>,
+      },
+      {
+        path: `/admin/manageproducts`,
+        element: <ManageProducts/>,
+      },
+      {
+        path: `/admin/createproduct`,
+        element: <CreateProduct/>,
+      },
+      {
+        path: `/admin/updateproduct/:productId`,
+        element: <UpdateProduct/>
       }
     ]
   },

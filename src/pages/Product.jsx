@@ -27,6 +27,8 @@ const Product = () => {
           <img src="../src/assets/images/pic.png" />
           <h1>{product.title}</h1>
           <p>{product.price}</p>
+          <p>{product.description}</p>
+          <p>{product.stock}</p>
           <button>Add to Cart</button>
                   
       </article>
