@@ -1,6 +1,5 @@
-import React from 'react'
+import React  from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './index.css'
 import {
   createBrowserRouter,
@@ -13,6 +12,7 @@ import ErrorPage from './pages/ErrorPage';
 import ManageProducts from './pages/admin/ManageProducts';
 import CreateProduct from './pages/admin/CreateProduct';
 import UpdateProduct from './pages/admin/UpdateProduct';
+
 
 const router = createBrowserRouter([
   {
