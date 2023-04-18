@@ -2,11 +2,11 @@ import React from 'react'
 import Nav from './Nav'
 import Cart from './Cart'
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div>Header
       <Nav/>
-      <Cart/>
+      <Cart cartProducts={props.cartProducts}/>
     </div>
   )
 }
