@@ -9,11 +9,11 @@ const Header = (props) => {
   return (
     <div>
       <Nav cartVisibility={cartVisibility} setCartVisibility={setCartVisibility}/>
+
       {cartVisibility ? <Cart 
       cartProducts={props.cartProducts}
       setCartProducts={props.setCartProducts}/>
-    : null}
-      
+      :null}
     </div>
   )
 }
