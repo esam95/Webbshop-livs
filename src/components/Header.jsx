@@ -4,14 +4,14 @@ import Cart from './Cart'
 import { useState } from 'react'
 
 const Header = (props) => {
-  const [cartVisibility, setCartVisibility] = useState(true);
-    setCartVisibility(false)
+  const [cartVisibility, setCartVisibility] = useState(false);
+
   return (
     <div>
-      <Nav cartVisibility={cartVisibility} setCartVisbility={setCartVisibility}/>
+      <Nav cartVisibility={cartVisibility} setCartVisibility={setCartVisibility}/>
       {cartVisibility ? <Cart 
-      cartList={props.cartList} 
-      setCartList={props.setCartList}/>
+      cartProducts={props.cartProducts}
+      setCartProducts={props.setCartProducts}/>
     : null}
       
     </div>
