@@ -6,7 +6,7 @@ import Header from '../components/Header';
 
 const Products = (props) => {
   const [productList, setProductList] = useState([]);
-  const [cartProducts, setcartProducts] = useOutletContext();
+  const [cartProducts, setCartProducts] = useOutletContext();
 
 
   const fetchData = async () => {
@@ -23,25 +23,45 @@ const Products = (props) => {
     fetchData()
   }, []);
 
-  function addToCart (e) {
+  function newaddtoCart(e) {
     e.preventDefault();
-    setcartProducts([...cartProducts,
-      e.target.id])
-      console.log(cartProducts);
+    let newList = [];
+    let sameId= true;
+
+    for(const cartId of cartProducts) {
+        newList=[...newList, cartId]
     }
+    if(newList.length === 0){
+      newList = [...newList, {id:e.target.id, amount:0}];
+      setCartProducts(newList)
+    }
+    for(const listItem of newList) {
+      if(e.target.id === listItem.id){
+        sameId = true;
+        listItem.amount++;
+        setCartProducts(newList)
+        break;
+      } else {
+        sameId = false;
+      }
+    }
+    if(sameId === false){
+      newList = [...newList, {id:e.target.id, amount:1}];
+      setCartProducts(newList)
+    }
+  }
 
     return (
-    <div>
+    <div id='productContainer'>
       {productList.length>0 ? productList.map(product => {
         return <article key={product._id}>
           <Product
             key={product._id} 
             title={product.title} 
             price={product.price}/>
-            <button onClick={addToCart} id={product._id}>Add to Cart</button>
-            <button>
-            <Link to={`../products/${product._id}`} relative='path'>view</Link>
-            </button> 
+            <button onClick={newaddtoCart} id={product._id} className='centerElement'>Add to Cart</button><br />
+            <br />
+            <Link to={`../products/${product._id}`} relative='path' className='centerElement'>Read more...</Link>
         </article>
       }): null
       }

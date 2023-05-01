@@ -2,12 +2,28 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Product = (props) => {
+  let imgsrc=''
+  if(props.title === 'Apelsin'){
+    imgsrc = "src/assets/images/Apelsin.jpg"
+  } else if(props.title ==='Sprite'){
+    imgsrc = "src/assets/images/sprite.jpg"
+  } else if(props.title ==='Redbull'){
+    imgsrc = "src/assets/images/redbull.jpg"
+  } else if(props.title ==='Daim'){
+    imgsrc = "src/assets/images/daim.jpg"
+  } else if(props.title ==='Gifflar'){
+    imgsrc = "src/assets/images/gifflar.jpg"
+  } else if(props.title ==='banan'){
+    imgsrc = "src/assets/images/banan.jpg"
+  } else {
+    imgsrc = "src/assets/images/pic.png"
+  }
+  
   return (
     <div>
-          <img src="src\assets\images\pic.png" alt="" />
-          <h1>{props.title}</h1>
-          <p>{props.price}</p>
-                   
+          <img src={imgsrc} alt="" id='productImage'/>
+          <h1 className='center'>{props.title}</h1>
+          <p className='center'>{props.price} kr</p>          
     </div>
   )
 }

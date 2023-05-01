@@ -11,7 +11,7 @@ const Root = (props) => {
   return (
     <div>
 
-        <Header cartProducts={cartProducts}/>
+        <Header cartProducts={cartProducts} setCartProducts={setCartProducts}/>
         <section>
             <Outlet context={[cartProducts, setCartProducts]}/>
         </section>

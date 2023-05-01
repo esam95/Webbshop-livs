@@ -12,6 +12,7 @@ import ErrorPage from './pages/ErrorPage';
 import ManageProducts from './pages/admin/ManageProducts';
 import CreateProduct from './pages/admin/CreateProduct';
 import UpdateProduct from './pages/admin/UpdateProduct';
+import Checkout from './pages/Checkout';
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: `/admin/updateproduct/:productId`,
         element: <UpdateProduct/>
+      },
+      {
+        path: `/checkout`,
+        element: <Checkout/>
       }
     ]
   },
