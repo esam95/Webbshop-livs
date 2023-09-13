@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Product from '../components/Product';
+import Header from '../components/Header';
 
-const Products = () => {
+const Products = (props) => {
   const [productList, setProductList] = useState([]);
   const [cartProducts, setCartProducts] = useOutletContext();
+
 
   const fetchData = async () => {
     try{
@@ -21,7 +23,7 @@ const Products = () => {
     fetchData()
   }, []);
 
-  function addToCart(e) {
+  function newaddtoCart(e) {
     e.preventDefault();
     let newList = [];
     let sameId= true;
@@ -57,7 +59,7 @@ const Products = () => {
             key={product._id} 
             title={product.title} 
             price={product.price}/>
-            <button onClick={addToCart} id={product._id} className='centerElement'>Add to Cart</button><br />
+            <button onClick={newaddtoCart} id={product._id} className='centerElement'>Add to Cart</button><br />
             <br />
             <Link to={`../products/${product._id}`} relative='path' className='centerElement'>Read more...</Link>
         </article>

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const UpdateProduct = () => {
   const id = useParams().productId;
@@ -46,10 +45,12 @@ const UpdateProduct = () => {
 
   function handleChangeTitle (e) {
     e.preventDefault();
+    console.log(product)
     setProduct({
       ...product,
       title: e.target.value
-    })}
+    })
+  console.log(product)}
 
   function handleChangeDescription (e) {
     e.preventDefault();
@@ -81,7 +82,6 @@ const UpdateProduct = () => {
 
   return (
     <div>
-      <h1 className='centerElement'>Update product</h1>
       <form onSubmit={updateProduct}>
         <label>Title</label><br />
         <input type="text" onChange={handleChangeTitle} value={product.title}/><br />
@@ -93,10 +93,10 @@ const UpdateProduct = () => {
         <input type="text" onChange={handleChangeStock} value={product.stock}/><br />
         <label>Category</label><br />
         <input type="text" onChange={handleChangeCategory} value={product.category}/><br />
-        <br /><button>Submit</button>
+        <button>Submit</button>
       </form>
-      <br />
-      <Link to={`/admin/manageproducts`} relative='path'>Manage Products</Link>
+    
+    
     </div>
   )
 }
