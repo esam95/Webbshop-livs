@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { redirect } from "react-router-dom";
 
 const CreateProduct = () => {
   const [product, setProduct] = useState({
@@ -37,6 +38,7 @@ const CreateProduct = () => {
 
   function handleChangeTitle (e) {
     e.preventDefault();
+    console.log(product)
     setProduct({
       ...product,
       title: e.target.value
@@ -72,21 +74,21 @@ const CreateProduct = () => {
 
   return (
     <div>
-        <h1 className='centerElement'>Create product</h1>
-        <form onSubmit={createProduct}>
-          <label>Title</label><br />
-          <input type="text" onChange={handleChangeTitle}/><br />
-          <label>Description</label><br />
-          <textarea name="" id="" cols="30" rows="10" onChange={handleChangeDescription}></textarea><br />
-          <label>Price</label><br />
-          <input type="text" onChange={handleChangePrice}/><br />
-          <label>Stock</label><br />
-          <input type="text" onChange={handleChangeStock}/><br />
-          <label>Category</label><br />
-          <input type="text" onChange={handleChangeCategory}/><br /><br />
-          <button>Submit</button>
-        </form><br />
+      <form onSubmit={createProduct}>
+        <label>Title</label><br />
+        <input type="text" onChange={handleChangeTitle}/><br />
+        <label>Description</label><br />
+        <textarea name="" id="" cols="30" rows="10" onChange={handleChangeDescription}></textarea><br />
+        <label>Price</label><br />
+        <input type="text" onChange={handleChangePrice}/><br />
+        <label>Stock</label><br />
+        <input type="text" onChange={handleChangeStock}/><br />
+        <label>Category</label><br />
+        <input type="text" onChange={handleChangeCategory}/><br />
+        <button>Submit</button>
+      </form>
       <Link to={`../manageproducts`} relative='path'>Manage Products</Link>
+
     </div>
   )
 }
