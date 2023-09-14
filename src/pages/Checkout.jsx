@@ -83,7 +83,7 @@ function increaseAmount (e) {
           cartProductList.map(product => (
             <tr className="checkout-row" key={product._id}>
               <td className="checkout-image-cell">
-              <img id='cartImage' src={`src/assets/images/${product.title}.jpg`} alt=''/>
+              <img id='cartImage' src={`/static/images/${product.title}.jpg`} alt=''/>
               </td>
               <td className="checkout-title-cell">{product.title}</td>
               <td className="checkout-price-cell">${product.price}</td>

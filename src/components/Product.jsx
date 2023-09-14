@@ -4,19 +4,19 @@ import { Link } from 'react-router-dom'
 const Product = (props) => {
   let imgsrc=''
   if(props.title === 'Apelsin'){
-    imgsrc = "src/assets/images/Apelsin.jpg"
+    imgsrc = "/static/images/Apelsin.jpg"
   } else if(props.title ==='Sprite'){
-    imgsrc = "src/assets/images/sprite.jpg"
+    imgsrc = "/static/images/sprite.jpg"
   } else if(props.title ==='Redbull'){
-    imgsrc = "src/assets/images/redbull.jpg"
+    imgsrc = "/static/images/redbull.jpg"
   } else if(props.title ==='Daim'){
-    imgsrc = "src/assets/images/daim.jpg"
+    imgsrc = "/static/images/daim.jpg"
   } else if(props.title ==='Gifflar'){
-    imgsrc = "src/assets/images/gifflar.jpg"
+    imgsrc = "/static/images/gifflar.jpg"
   } else if(props.title ==='Banan'){
-    imgsrc = "src/assets/images/banan.jpg"
+    imgsrc = "/static/images/banan.jpg"
   } else {
-    imgsrc = "src/assets/images/pic.png"
+    imgsrc = "/static/images/pic.png"
   }
 
   return (

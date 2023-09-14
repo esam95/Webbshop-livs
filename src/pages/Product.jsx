@@ -25,19 +25,19 @@ const Product = () => {
 
   let imgsrc=''
   if(product.title === 'Apelsin'){
-    imgsrc = "/src/assets/images/Apelsin.jpg"
+    imgsrc = "/static/images/Apelsin.jpg"
   } else if(product.title ==='Sprite'){
-    imgsrc = "/src/assets/images/sprite.jpg"
+    imgsrc = "/static/images/sprite.jpg"
   } else if(product.title ==='Redbull'){
-    imgsrc = "/src/assets/images/redbull.jpg"
+    imgsrc = "/static/images/redbull.jpg"
   } else if(product.title ==='Daim'){
-    imgsrc = "/src/assets/images/daim.jpg"
+    imgsrc = "/static/images/daim.jpg"
   } else if(product.title ==='Gifflar'){
-    imgsrc = "/src/assets/images/gifflar.jpg"
+    imgsrc = "/static/images/gifflar.jpg"
   } else if(product.title ==='Banan'){
-    imgsrc = "/src/assets/images/banan.jpg"
+    imgsrc = "/static/images/banan.jpg"
   } else {
-    imgsrc = "/src/assets/images/pic.jpg"
+    imgsrc = "/static/images/pic.jpg"
   }
 
   function newaddtoCart(e) {

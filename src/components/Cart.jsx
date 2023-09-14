@@ -50,7 +50,7 @@ const Cart = (props) => {
     <tbody>
       {props.cartProducts !=undefined ? cartProductList.map(product => {
         return  <tr id='cartRow' key={product._id}>
-        <img id='cartImage' src={`src/assets/images/${product.title}.jpg`} alt=''/>
+        <img id='cartImage' src={`/static/images/${product.title}.jpg`} alt=''/>
         <td>{product.title}</td>
         <td>{product.amount} x</td>
         <td>{product.price} kr</td>
