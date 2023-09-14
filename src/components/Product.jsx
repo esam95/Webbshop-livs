@@ -13,12 +13,12 @@ const Product = (props) => {
     imgsrc = "src/assets/images/daim.jpg"
   } else if(props.title ==='Gifflar'){
     imgsrc = "src/assets/images/gifflar.jpg"
-  } else if(props.title ==='banan'){
+  } else if(props.title ==='Banan'){
     imgsrc = "src/assets/images/banan.jpg"
   } else {
     imgsrc = "src/assets/images/pic.png"
   }
-  
+
   return (
     <div>
           <img src={imgsrc} alt="" id='productImage'/>

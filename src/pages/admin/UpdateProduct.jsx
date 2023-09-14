@@ -81,23 +81,53 @@ const UpdateProduct = () => {
       })}
 
   return (
-    <div>
+    <div className="edit-product">
       <form onSubmit={updateProduct}>
-        <label>Title</label><br />
-        <input type="text" onChange={handleChangeTitle} value={product.title}/><br />
-        <label>Description</label><br />
-        <textarea name="" id="" cols="30" rows="10" onChange={handleChangeDescription} value={product.description}></textarea><br />
-        <label>Price</label><br />
-        <input type="text" onChange={handleChangePrice} value={product.price}/><br />
-        <label>Stock</label><br />
-        <input type="text" onChange={handleChangeStock} value={product.stock}/><br />
-        <label>Category</label><br />
-        <input type="text" onChange={handleChangeCategory} value={product.category}/><br />
-        <button>Submit</button>
+        <label htmlFor="title">Title</label><br />
+        <input
+          type="text"
+          id="title"
+          onChange={handleChangeTitle}
+          value={product.title}
+          className="input-field"
+        /><br />
+        <label htmlFor="description">Description</label><br />
+        <textarea
+          id="description"
+          cols="30"
+          rows="10"
+          onChange={handleChangeDescription}
+          value={product.description}
+          className="input-field"
+        ></textarea><br />
+        <label htmlFor="price">Price</label><br />
+        <input
+          type="text"
+          id="price"
+          onChange={handleChangePrice}
+          value={product.price}
+          className="input-field"
+        /><br />
+        <label htmlFor="stock">Stock</label><br />
+        <input
+          type="text"
+          id="stock"
+          onChange={handleChangeStock}
+          value={product.stock}
+          className="input-field"
+        /><br />
+        <label htmlFor="category">Category</label><br />
+        <input
+          type="text"
+          id="category"
+          onChange={handleChangeCategory}
+          value={product.category}
+          className="input-field"
+        /><br />
+        <button className="submit-button">Submit</button>
       </form>
-    
-    
     </div>
+
   )
 }
 

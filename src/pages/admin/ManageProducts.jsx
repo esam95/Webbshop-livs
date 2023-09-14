@@ -34,36 +34,39 @@ const ManageProducts = () => {
   }, []);
   return (
     
-    <div>
-      <Link to={"/products"}>Products</Link><br />
-      <Link to={"../createproduct"} relative='path'>creat a product</Link>
+    <div className="product-list">
+      <Link to={"/products"} className="link-button">Products</Link>
+      <Link to={"../createproduct"} relative='path' className="link-button">Create a Product</Link>
       <table>
         <thead>
           <tr>
             <th>Title</th>
-            <th>price</th>
-            <th>stock</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
           </tr>
         </thead>
-        
         <tbody>
-          {productList.map(product => {
-          return <tr key={product._id}>
-            <td>{product.title}</td>
-            <td>{product.price}</td>
-            <td>{product.stock}</td>
-            <button>
-              <Link to={`../updateproduct/${product._id}`} relative='path'>Update Product</Link>
-            </button>
-            <button id={product._id} onClick={deleteProduct}>
-              Delete Product
-            </button>
+          {productList.map(product => (
+            <tr key={product._id}>
+              <td>{product.title}</td>
+              <td>{product.price.toFixed(2)} kr</td>
+              <td>{product.stock}</td>
+              <td>
+                <Link to={`../updateproduct/${product._id}`} relative='path' className="action-button">
+                  Update
+                </Link>
+                <button  id={product._id} onClick={deleteProduct} className="action-button">
+                  Delete
+                </button>
+              </td>
             </tr>
-          })}
+          ))}
         </tbody>
       </table>
-      
     </div>
+
+
   )
 }
 

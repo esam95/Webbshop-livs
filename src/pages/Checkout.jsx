@@ -77,35 +77,46 @@ function increaseAmount (e) {
   setCartProducts(newList);
 }
   return (
-    <table>
-          
-          <tbody>
-            {cartProducts !==undefined && cartProducts.length > 0 ? cartProductList.map(product => {
-            return  <tr id='checkoutRow' key={product._id}>
-                      <img src="src\assets\images\pic.png" id='cartImage' alt=''/>
-                      <td>{product.title}</td>
-                      <td>{product.price}</td>
-                      <button onClick={decreaseAmount} id={product._id}>-</button>
-                      <td>{product.amount}</td>
-                      <button onClick={increaseAmount} id={product._id}>+</button>
-                      <button onClick={deleteProduct} id={product._id}>Delete Product</button>
-                    </tr>
-            }):
-            <div>
-                <p>cart is empty</p>
-                <button style={{marginLeft: "100px"}}>
-                <Link to={{ pathname: `/products` }}>Product page</Link>
+    <table className="checkout-table">
+      <tbody>
+        {cartProducts !== undefined && cartProducts.length > 0 ? (
+          cartProductList.map(product => (
+            <tr className="checkout-row" key={product._id}>
+              <td className="checkout-image-cell">
+              <img id='cartImage' src={`src/assets/images/${product.title}.jpg`} alt=''/>
+              </td>
+              <td className="checkout-title-cell">{product.title}</td>
+              <td className="checkout-price-cell">${product.price}</td>
+              <td className="checkout-amount-cell">
+                <button onClick={decreaseAmount} id={product._id} className="checkout-amount-button">
+                  -
                 </button>
-            </div>}
-                
-            
-          </tbody>
-
-          <tfoot>
-          {totalPrice > 0 ? `Total price: ${totalPrice}`
-            : null}
-          </tfoot>
+                <span className="checkout-amount">{product.amount}</span>
+                <button onClick={increaseAmount} id={product._id} className="checkout-amount-button">
+                  +
+                </button>
+              </td>
+              <td>
+                <button onClick={deleteProduct} id={product._id} className="delete-button">
+                  Delete Product
+                </button>
+              </td>
+            </tr>
+          ))
+        ) : (
+          <div className="empty-cart">
+            <p>Cart is empty</p>
+            <button className="product-page-button">
+              <Link to={{ pathname: `/products` }}>Product page</Link>
+            </button>
+          </div>
+        )}
+      </tbody>
+      <tfoot className="checkout-price">
+        {totalPrice > 0 ? <span >Total price: {totalPrice} kr</span> : null}
+      </tfoot>
     </table>
+
   )
 }
 

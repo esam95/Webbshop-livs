@@ -54,7 +54,7 @@ const Products = (props) => {
     return (
     <div id='productContainer'>
       {productList.length>0 ? productList.map(product => {
-        return <article key={product._id}>
+        return <article className='product-item' key={product._id}>
           <Product
             key={product._id} 
             title={product.title} 

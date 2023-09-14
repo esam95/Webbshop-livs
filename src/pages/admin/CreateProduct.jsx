@@ -74,22 +74,47 @@ const CreateProduct = () => {
 
   return (
     <div>
-      <form onSubmit={createProduct}>
-        <label>Title</label><br />
-        <input type="text" onChange={handleChangeTitle}/><br />
-        <label>Description</label><br />
-        <textarea name="" id="" cols="30" rows="10" onChange={handleChangeDescription}></textarea><br />
-        <label>Price</label><br />
-        <input type="text" onChange={handleChangePrice}/><br />
-        <label>Stock</label><br />
-        <input type="text" onChange={handleChangeStock}/><br />
-        <label>Category</label><br />
-        <input type="text" onChange={handleChangeCategory}/><br />
-        <button>Submit</button>
-      </form>
-      <Link to={`../manageproducts`} relative='path'>Manage Products</Link>
+  <form onSubmit={createProduct} className="edit-product">
+    <label htmlFor="createTitle">Title</label><br />
+    <input
+      type="text"
+      id="createTitle"
+      onChange={handleChangeTitle}
+      className="input-field"
+    /><br />
+    <label htmlFor="createDescription">Description</label><br />
+    <textarea
+      id="createDescription"
+      cols="30"
+      rows="10"
+      onChange={handleChangeDescription}
+      className="input-field"
+    ></textarea><br />
+    <label htmlFor="createPrice">Price</label><br />
+    <input
+      type="text"
+      id="createPrice"
+      onChange={handleChangePrice}
+      className="input-field"
+    /><br />
+    <label htmlFor="createStock">Stock</label><br />
+    <input
+      type="text"
+      id="createStock"
+      onChange={handleChangeStock}
+      className="input-field"
+    /><br />
+    <label htmlFor="createCategory">Category</label><br />
+    <input
+      type="text"
+      id="createCategory"
+      onChange={handleChangeCategory}
+      className="input-field"
+    /><br />
+    <button className="submit-button">Submit</button>
+  </form>
+</div>
 
-    </div>
   )
 }
 
