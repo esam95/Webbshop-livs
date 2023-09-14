@@ -6,15 +6,15 @@ const Product = (props) => {
   if(props.title === 'Apelsin'){
     imgsrc = "/static/images/Apelsin.jpg"
   } else if(props.title ==='Sprite'){
-    imgsrc = "/static/images/sprite.jpg"
+    imgsrc = "/static/images/Sprite.jpg"
   } else if(props.title ==='Redbull'){
-    imgsrc = "/static/images/redbull.jpg"
+    imgsrc = "/static/images/Redbull.jpg"
   } else if(props.title ==='Daim'){
-    imgsrc = "/static/images/daim.jpg"
+    imgsrc = "/static/images/Daim.jpg"
   } else if(props.title ==='Gifflar'){
-    imgsrc = "/static/images/gifflar.jpg"
+    imgsrc = "/static/images/Gifflar.jpg"
   } else if(props.title ==='Banan'){
-    imgsrc = "/static/images/banan.jpg"
+    imgsrc = "/static/images/Banan.jpg"
   } else {
     imgsrc = "/static/images/pic.png"
   }

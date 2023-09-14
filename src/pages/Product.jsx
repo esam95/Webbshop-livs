@@ -27,15 +27,15 @@ const Product = () => {
   if(product.title === 'Apelsin'){
     imgsrc = "/static/images/Apelsin.jpg"
   } else if(product.title ==='Sprite'){
-    imgsrc = "/static/images/sprite.jpg"
+    imgsrc = "/static/images/Sprite.jpg"
   } else if(product.title ==='Redbull'){
-    imgsrc = "/static/images/redbull.jpg"
+    imgsrc = "/static/images/Redbull.jpg"
   } else if(product.title ==='Daim'){
-    imgsrc = "/static/images/daim.jpg"
+    imgsrc = "/static/images/Daim.jpg"
   } else if(product.title ==='Gifflar'){
-    imgsrc = "/static/images/gifflar.jpg"
+    imgsrc = "/static/images/Gifflar.jpg"
   } else if(product.title ==='Banan'){
-    imgsrc = "/static/images/banan.jpg"
+    imgsrc = "/static/images/Banan.jpg"
   } else {
     imgsrc = "/static/images/pic.jpg"
   }
