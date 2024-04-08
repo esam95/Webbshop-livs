@@ -1,37 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getProducts, deleteProductdb } from '../../firebase/Firebase';
 
 const ManageProducts = () => {
   const [productList, setProductList] = useState([]);
 
-  const fetchData = async () => {
-    try{
-      const response = await fetch('https://product-api-production-94fe.up.railway.app/products')
-      const data = await response.json()
-      setProductList(data)
-      console.log(data)
-    } catch(error){
-      console.log(error)
-    }
-  }
+  //Fetch products
 
-  const deleteProduct = async (e) => {
-    try{
-      e.preventDefault();
-      await fetch(`https://product-api-production-94fe.up.railway.app/products/${e.target.id}`, {
-        method: 'DELETE'
-      })
-      console.log(e.target.id)
-      fetchData();
-    }catch(error){
-      console.log(error);
-    }
-      
-  }
+  const fetchProducts = async () => {
+    const productList = await getProducts();
+    setProductList(productList);
+  };
 
   useEffect(() => {
-    fetchData()
+    fetchProducts().catch(console.error);
+    console.log(productList)
   }, []);
+
+  //Delete product
+
+  const deleteProduct = async (productId) => {
+    try {
+      console.log(productId);
+      await deleteProductdb(productId);
+      fetchProducts().catch(console.error);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+
+
   return (
     
     <div className="product-list">
@@ -48,15 +46,15 @@ const ManageProducts = () => {
         </thead>
         <tbody>
           {productList.map(product => (
-            <tr key={product._id}>
+            <tr key={product.id}>
               <td>{product.title}</td>
-              <td>{product.price.toFixed(2)} kr</td>
+              <td>{product.price} kr</td>
               <td>{product.stock}</td>
               <td>
-                <Link to={`../updateproduct/${product._id}`} relative='path' className="action-button">
+                <Link to={`../updateproduct/${product.id}`} relative='path' className="action-button">
                   Update
                 </Link>
-                <button  id={product._id} onClick={deleteProduct} className="action-button">
+                <button onClick={() => deleteProduct(product.id)} className="action-button">
                   Delete
                 </button>
               </td>

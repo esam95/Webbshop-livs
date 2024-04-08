@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
+import { getProductById } from '../firebase/Firebase';
 
 const Product = () => {
   const [product, setProduct] = useState([]);
@@ -9,19 +10,19 @@ const Product = () => {
 
   const id = useParams().productId;
 
-  const fetchData = async () => {
-    try{
-      const response = await fetch(`https://product-api-production-94fe.up.railway.app/products/${id}`)
-      const data = await response.json()
-      setProduct(data)
-    } catch(error){
-      console.log(error)
-    }
-  }
+  //Fetch product
 
   useEffect(() => {
-    fetchData()
-  }, []);
+    getProductById(id)
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching product: ", error);
+      });
+      console.log(product)
+
+  }, [id]);
 
   let imgsrc=''
   if(product.title === 'Apelsin'){
@@ -76,7 +77,7 @@ const Product = () => {
         <p className='center'>{product.price} kr</p>
         <p className='center'>{product.stock} st</p>
         <p className='center'>{product.description}</p>
-        <button onClick={newaddtoCart} id={product._id} className='centerElement'>Add to Cart</button>
+        <button onClick={newaddtoCart} id={product.id} className='centerElement'>Add to Cart</button>
       </article>
     </div>
   )

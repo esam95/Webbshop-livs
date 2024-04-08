@@ -3,25 +3,25 @@ import { useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Product from '../components/Product';
 import Header from '../components/Header';
+import { getProducts } from '../firebase/Firebase';
 
 const Products = (props) => {
   const [productList, setProductList] = useState([]);
   const [cartProducts, setCartProducts] = useOutletContext();
-
-
-  const fetchData = async () => {
-    try{
-      const response = await fetch('https://product-api-production-94fe.up.railway.app/products')
-      const data = await response.json()
-      setProductList(data)
-    } catch(error){
-      console.log(error)
-    }
-  }
+  
+  //Fetch products
 
   useEffect(() => {
-    fetchData()
+    const fetchProducts = async () => {
+      const productList = await getProducts();
+      setProductList(productList);
+    };
+
+    fetchProducts().catch(console.error);
+    console.log(productList)
   }, []);
+
+  //Cart logic
 
   function newaddtoCart(e) {
     e.preventDefault();
@@ -54,14 +54,14 @@ const Products = (props) => {
     return (
     <div id='productContainer'>
       {productList.length>0 ? productList.map(product => {
-        return <article className='product-item' key={product._id}>
+        return <article className='product-item' key={product.id}>
           <Product
-            key={product._id} 
+            key={product.id} 
             title={product.title} 
             price={product.price}/>
-            <button onClick={newaddtoCart} id={product._id} className='centerElement'>Add to Cart</button><br />
+            <button onClick={newaddtoCart} id={product.id} className='centerElement'>Add to Cart</button><br />
             <br />
-            <Link to={`../products/${product._id}`} relative='path' className='centerElement'>Read more...</Link>
+            <Link to={`../products/${product.id}`} relative='path' className='centerElement'>Read more...</Link>
         </article>
       }): null
       }

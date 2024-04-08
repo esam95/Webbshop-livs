@@ -1,48 +1,37 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react';
+import { getProductById, updateProduct } from '../../firebase/Firebase';
 
 const UpdateProduct = () => {
   const id = useParams().productId;
   const [product, setProduct] = useState({});
 
-  const fetchProduct = async () => {
-    const response = await fetch('https://product-api-production-94fe.up.railway.app/products/'+id);
-    const data = await response.json();
-    setProduct(data)
-  }
-
+  //Fetch product
   useEffect(() => {
-    fetchProduct()
-  }, []);
-
-  const updateProduct = async (e) => {
-    try{
-      e.preventDefault()
-      const response = await fetch('https://product-api-production-94fe.up.railway.app/products/'+id, {
-      method: 'PATCH',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        _id: product._id,
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        stock: product.stock,
-        category: product.category,
-        image: product.image,
-        date: product.date,
-        __v: product.__v
+    getProductById(id)
+      .then((data) => {
+        setProduct(data);
       })
-    })
-    const postSuccessfull = await response.json();
-    if(postSuccessfull.acknowledged===true){
-      window.location.href = "/admin/manageproducts";
-    }
-    }catch(error) {
-      console.log(error);
-    } 
-  }
+      .catch((error) => {
+        console.error("Error fetching product: ", error);
+      });
+      console.log(product)
+  }, [id]);
 
+  //Update product
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    updateProduct(id, product).then(() => {
+      console.log('Product added!');
+      window.location.href = "/admin/manageproducts";
+    }).catch((error) => {
+      console.error('Error adding product:', error);
+    });
+  };
+
+  //Handle form input
   function handleChangeTitle (e) {
     e.preventDefault();
     console.log(product)
@@ -82,7 +71,7 @@ const UpdateProduct = () => {
 
   return (
     <div className="edit-product">
-      <form onSubmit={updateProduct}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label><br />
         <input
           type="text"
@@ -102,7 +91,7 @@ const UpdateProduct = () => {
         ></textarea><br />
         <label htmlFor="price">Price</label><br />
         <input
-          type="text"
+          type="number"
           id="price"
           onChange={handleChangePrice}
           value={product.price}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
-import { redirect } from "react-router-dom";
+import { addProduct } from '../../firebase/Firebase';
 
 const CreateProduct = () => {
   const [product, setProduct] = useState({
@@ -10,31 +9,22 @@ const CreateProduct = () => {
     stock: 0,
     category: 'No Category',
     image: ''
-    });
+  });
 
-  const createProduct = async (e) => {
-    try{
-      e.preventDefault()
-      const response = await fetch('https://product-api-production-94fe.up.railway.app/products', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        stock: product.stock,
-        category: product.category,
-        image: product.image
-      })
-    })
-    const postSuccessfull = await response.json();
-    if(postSuccessfull.errors===undefined){
+  //Create product
+  
+  const handleSubmit = (event) => {
+    event.preventDefault(); 
+    
+    addProduct(product).then(() => {
+      console.log('Product added!');
       window.location.href = "/admin/manageproducts";
-    }
-    }catch(error) {
-      console.log(error);
-    } 
-  }
+    }).catch((error) => {
+      console.error('Error adding product:', error);
+    });
+  };
+
+  //Handle form input
 
   function handleChangeTitle (e) {
     e.preventDefault();
@@ -74,7 +64,7 @@ const CreateProduct = () => {
 
   return (
     <div>
-  <form onSubmit={createProduct} className="edit-product">
+  <form onSubmit={handleSubmit} className="edit-product">
     <label htmlFor="createTitle">Title</label><br />
     <input
       type="text"
@@ -92,7 +82,7 @@ const CreateProduct = () => {
     ></textarea><br />
     <label htmlFor="createPrice">Price</label><br />
     <input
-      type="text"
+      type="number"
       id="createPrice"
       onChange={handleChangePrice}
       className="input-field"
